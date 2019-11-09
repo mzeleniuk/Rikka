@@ -1,0 +1,80 @@
+.movie {
+  max-width: 20%;
+  background-color: #1f2227;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+  padding: 5px 20px 10px 20px;
+  color: rgb(191, 199, 213);
+  cursor: default;
+  transition: border-color 250ms ease-in-out;
+}
+
+.movie:hover {
+  border-color: rgb(9, 211, 172);
+}
+
+.movie:hover h2, .movie:hover p {
+  color: rgb(9, 211, 172);
+}
+
+.movie h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  transition: color 250ms ease-in-out;
+}
+
+.movie img {
+  height: auto;
+  width: 100%;
+}
+
+.movie p {
+  font-size: 16px;
+  margin-top: 5px;
+  transition: color 250ms ease-in-out;
+}
+
+@media screen and (max-width: 1439px) {
+  .movie {
+    max-width: 25%;
+    padding: 5px 15px 10px 15px;
+  }
+
+  .movie h2 {
+    font-size: 16px;
+  }
+
+  .movie p {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .movie {
+    max-width: 30%;
+  }
+
+  .movie h2 {
+    font-size: 14px;
+  }
+
+  .movie p {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .movie {
+    max-width: 40%;
+    padding: 5px 10px 10px 10px;
+  }
+
+  .movie h2 {
+    font-size: 12px;
+    margin-bottom: 5px;
+  }
+
+  .movie p {
+    font-size: 10px;
+  }
+}

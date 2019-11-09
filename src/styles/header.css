@@ -1,0 +1,36 @@
+header.app-header {
+  height: 100%;
+  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(51, 54, 59);
+  box-shadow: rgba(0, 0, 0, 0.1) 0 1px 2px 0;
+  font-size: 20px;
+  padding: 5px 20px;
+  cursor: default;
+}
+
+header.app-header h2 {
+  color: #09d3ac;
+}
+
+@media screen and (max-width: 1439px) {
+  header.app-header {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  header.app-header {
+    font-size: 16px;
+    padding: 5px 15px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  header.app-header {
+    font-size: 14px;
+    padding: 5px 10px;
+  }
+}

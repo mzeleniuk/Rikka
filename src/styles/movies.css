@@ -1,0 +1,12 @@
+.movies {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.movies h4.error-message {
+  width: 100%;
+  text-align: center;
+  color: coral;
+}

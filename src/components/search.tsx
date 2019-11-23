@@ -32,7 +32,7 @@ const Search: React.FC<IComponentProps> = (props: IComponentProps) => {
         placeholder="Search"
       />
 
-      <button type="submit" onClick={callSearchFunction}>
+      <button type="submit" onClick={callSearchFunction} disabled={!searchValue}>
         Submit
       </button>
     </form>

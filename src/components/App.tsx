@@ -1,57 +1,65 @@
-import React, { useState, useEffect } from "react";
+import React, { useReducer, useEffect } from "react";
 
 import Header from "./header";
 import Movie from "./movie";
+import { initialState, reducer } from "../store/reducer";
 import "../styles/App.css";
 import "../styles/movies.css";
 
 const App: React.FC = () => {
-  const [loading, setLoading]: Array<boolean | React.Dispatch<React.SetStateAction<any>>> = useState(true);
-  const [movies, setMovies]: Array<any | React.Dispatch<React.SetStateAction<any>>> = useState([]);
-  const [errorMessage, setErrorMessage]: Array<string | React.Dispatch<React.SetStateAction<string>>> = useState("");
-
-  const search = (searchValue: string) => {
-    setLoading(true);
-    setErrorMessage("");
-
-    fetch(`https://www.omdbapi.com/?s=${searchValue}&apikey=4a3b711b`)
-      .then((response: Response) => response.json())
-      .then((jsonResponse: any) => {
-        if (jsonResponse.Response === "True") {
-          setMovies(jsonResponse.Search);
-          setLoading(false);
-        } else {
-          setErrorMessage(jsonResponse.Error);
-          setLoading(false);
-        }
-      })
-  }
+  const [state, dispatch]: Array<any> = useReducer(reducer, initialState);
 
   useEffect(() => {
     fetch("https://www.omdbapi.com/?s=man&apikey=4a3b711b")
       .then((response: Response) => response.json())
       .then((jsonResponse: any) => {
         if (jsonResponse.Response === "True") {
-          setMovies(jsonResponse.Search);
-          setLoading(false);
+          dispatch({
+            type: "SEARCH_MOVIES_SUCCESS",
+            payload: jsonResponse.Search
+          });
         } else {
-          setErrorMessage(jsonResponse.Error);
-          setLoading(false);
+          dispatch({
+            type: "SEARCH_MOVIES_FAILURE",
+            error: jsonResponse.Error
+          });
         }
       })
   }, []);
+
+  const search = (searchValue: string) => {
+    dispatch({
+      type: "SEARCH_MOVIES_REQUEST"
+    });
+
+    fetch(`https://www.omdbapi.com/?s=${searchValue}&apikey=4a3b711b`)
+      .then((response: Response) => response.json())
+      .then((jsonResponse: any) => {
+        if (jsonResponse.Response === "True") {
+          dispatch({
+            type: "SEARCH_MOVIES_SUCCESS",
+            payload: jsonResponse.Search
+          });
+        } else {
+          dispatch({
+            type: "SEARCH_MOVIES_FAILURE",
+            error: jsonResponse.Error
+          });
+        }
+      })
+  };
 
   return (
     <div className="App">
       <Header search={search} text="Rikka" />
 
       <div className="movies">
-        {loading && !errorMessage ? (
+        {state.loading && !state.errorMessage ? (
           <span>loading...</span>
-        ) : errorMessage ? (
-          <h4 className="error-message">{errorMessage}</h4>
+        ) : state.errorMessage ? (
+          <h4 className="error-message">{state.errorMessage}</h4>
         ) : (
-          movies.map((movie: any) => (
+          state.movies.map((movie: any) => (
             <Movie key={movie.imdbID} movie={movie} />
           ))
         )}

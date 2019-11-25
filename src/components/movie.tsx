@@ -1,5 +1,6 @@
 import React from "react";
 
+import Image from "../components/image";
 import posterPlaceholder from "../images/poster-placeholder.png";
 import "../styles/movie.css";
 
@@ -12,7 +13,7 @@ interface IComponentProps {
   };
 }
 
-const Movie: React.FC<IComponentProps> = (props: IComponentProps) => {
+const Movie: React.FC<IComponentProps> = (props: IComponentProps): JSX.Element => {
   const movie: IComponentProps["movie"] = props.movie;
   const posterUrl: string = movie.Poster === "N/A" ? posterPlaceholder : movie.Poster;
 
@@ -20,11 +21,11 @@ const Movie: React.FC<IComponentProps> = (props: IComponentProps) => {
     <div className="movie">
       <h2>{movie.Title} ({movie.Type})</h2>
 
-      <img alt={movie.Title} src={posterUrl} />
+      <Image alt={movie.Title} className="poster" src={posterUrl} />
 
       <p>({movie.Year})</p>
     </div>
   );
-}
+};
 
 export default Movie;

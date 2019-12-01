@@ -1,11 +1,12 @@
 import React from "react";
 
-import Image from "../components/image";
+import Image from "./image";
 import posterPlaceholder from "../images/poster-placeholder.png";
 import "../styles/movie.css";
 
 interface IComponentProps {
   movie: {
+    imdbID: string;
     Poster: string;
     Title: string;
     Type: string;

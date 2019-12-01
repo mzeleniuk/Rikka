@@ -7,7 +7,7 @@ import { initialState, reducer } from "../store/reducer";
 import "../styles/App.css";
 import "../styles/movies.css";
 
-const App: React.FC = () => {
+const App: React.FC = (): JSX.Element => {
   const [state, dispatch]: Array<any> = useReducer(reducer, initialState);
 
   useEffect(() => {
@@ -67,6 +67,6 @@ const App: React.FC = () => {
       </div>
     </div>
   );
-}
+};
 
 export default App;

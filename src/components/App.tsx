@@ -60,8 +60,8 @@ const App: React.FC = (): JSX.Element => {
         ) : state.errorMessage ? (
           <h4 className="error-message">{state.errorMessage}</h4>
         ) : (
-          state.movies.map((movie: any) => (
-            <Movie key={movie.imdbID} movie={movie} />
+          state.movies.map((movie: any, index: number) => (
+            <Movie key={index} movie={movie} />
           ))
         )}
       </div>

@@ -32,7 +32,7 @@ const UseModal: React.FC<string> = (id: string): JSX.Element => {
       rootElementRef.current.remove();
       document.body.style.overflow = "visible";
 
-      if (parentElement.childNodes.length === -1) {
+      if (parentElement.childNodes.length < 1) {
         parentElement.remove();
       }
     };

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import posterPlaceholder from "../images/poster-placeholder.png";
 
 interface IComponentProps {
@@ -19,6 +19,10 @@ const ContentImage: React.FC<IComponentProps> = (props: IComponentProps): JSX.El
     setImageLoadStatus(true);
   };
 
+  useEffect(() => {
+    return () => setFallbackImageUsage(false);
+  }, [props.alt, props.src]);
+
   return (
     <img
       alt={props.alt}
@@ -28,6 +32,12 @@ const ContentImage: React.FC<IComponentProps> = (props: IComponentProps): JSX.El
       src={useFallbackImage ? posterPlaceholder : props.src}
     />
   );
+};
+
+ContentImage.defaultProps = {
+  alt: "",
+  className: "",
+  src: ""
 };
 
 export default ContentImage;
